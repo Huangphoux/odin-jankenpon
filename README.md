@@ -1,4 +1,4 @@
-# odin-jankenpon
+# Jank & Pong!
 
 Hi.
 
