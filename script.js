@@ -13,52 +13,46 @@ function getComputerChoice() {
     }
 }
 
-let humanScore = 0;
-let computerScore = 0;
-
 function playRound(humanChoice, computerChoice) {
     //   console.log(`Human: ${humanChoice}`);
     //   console.log(`Computer: ${computerChoice}`);
 
     // Rock and paper
     if (humanChoice == "rock" && computerChoice == "paper") {
-        console.log("You lose! Paper beats Rock.");
         computerScore++;
-        return;
+        return "Computer wins!";
     }
     if (computerChoice == "rock" && humanChoice == "paper") {
-        console.log("You win! Paper beats Rock.");
         humanScore++;
-        return;
+        return "You wins!";
     }
 
     // Rock and scissors
     if (humanChoice == "rock" && computerChoice == "scissors") {
-        console.log("You win! Rock beats Scissors.");
         humanScore++;
-        return;
+        return "You wins!";
     }
     if (computerChoice == "rock" && humanChoice == "scissors") {
-        console.log("You lose! Rock beats Scissors.");
         computerScore++;
-        return;
+        return "Computer wins!";
     }
 
     // Paper and scissors
     if (humanChoice == "scissors" && computerChoice == "paper") {
-        console.log("You win! Scissors beats Paper.");
         humanScore++;
-        return;
+        return "You wins!";
     }
 
     if (computerChoice == "scissors" && humanChoice == "paper") {
-        console.log("You lose! Scissors beats Paper.");
         computerScore++;
-        return;
+        return "Computer wins!";
     }
 
-    console.log("Wow! Ties! I guess no one wins then!");
+    return "Ties";
 }
+
+let humanScore = 0;
+let computerScore = 0;
 
 const humanSpan = document.createElement("span");
 humanSpan.textContent = humanScore;
@@ -72,20 +66,23 @@ computerItem.appendChild(computerSpan);
 
 const humanChoiceSpan = document.createElement("span");
 const humanChoiceItem = document.querySelector(".human-choice");
+humanChoiceSpan.textContent = "None";
 humanChoiceItem.appendChild(humanChoiceSpan);
 
 const computerChoiceSpan = document.createElement("span");
 const computerChoiceItem = document.querySelector(".computer-choice");
+computerChoiceSpan.textContent = "None";
 computerChoiceItem.appendChild(computerChoiceSpan);
 
-const showResult = document.createElement("h2");
+const whowin = document.querySelector(".whowin");
 
 const buttons = document.querySelectorAll("button");
 buttons.forEach((button) => {
     button.addEventListener("click", () => {
         const playerChoice = button.textContent.toLowerCase();
         const computerChoice = getComputerChoice();
-        playRound(playerChoice, computerChoice);
+
+        whowin.textContent = playRound(playerChoice, computerChoice);
 
         humanChoiceSpan.textContent = playerChoice;
         computerChoiceSpan.textContent = computerChoice;
