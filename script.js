@@ -74,7 +74,10 @@ const computerChoiceItem = document.querySelector(".computer-choice");
 computerChoiceSpan.textContent = "None";
 computerChoiceItem.appendChild(computerChoiceSpan);
 
-const whowin = document.querySelector(".whowin");
+const whoWin = document.createElement("h1");
+
+const body = document.querySelector("body");
+body.appendChild(whoWin);
 
 const buttons = document.querySelectorAll("button");
 buttons.forEach((button) => {
@@ -82,12 +85,21 @@ buttons.forEach((button) => {
         const playerChoice = button.textContent.toLowerCase();
         const computerChoice = getComputerChoice();
 
-        whowin.textContent = playRound(playerChoice, computerChoice);
+        whoWin.textContent = playRound(playerChoice, computerChoice);
 
         humanChoiceSpan.textContent = playerChoice;
         computerChoiceSpan.textContent = computerChoice;
 
         humanSpan.textContent = humanScore;
         computerSpan.textContent = computerScore;
+
+        if (humanScore == 5 || computerScore == 5) {
+            buttons.forEach((button) => {
+                button.disabled = true;
+            });
+
+            const winner = humanScore === 5 ? "Human" : "Computer";
+            whoWin.textContent = `Finish! ${winner} wins!`;
+        }
     });
 });
