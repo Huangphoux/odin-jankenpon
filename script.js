@@ -60,10 +60,23 @@ function playRound(humanChoice, computerChoice) {
     console.log("Wow! Ties! I guess no one wins then!");
 }
 
+const humanSpan = document.createElement("span");
+humanSpan.textContent = humanScore;
+const humanItem = document.querySelector(".human");
+humanItem.appendChild(humanSpan);
+
+const computerSpan = document.createElement("span");
+computerSpan.textContent = computerScore;
+const computerItem = document.querySelector(".computer");
+computerItem.appendChild(computerSpan);
+
 const buttons = document.querySelectorAll("button");
 buttons.forEach((button) => {
-    button.addEventListener("click", (e) => {
+    button.addEventListener("click", () => {
         const playerChoice = button.textContent.toLowerCase();
         playRound(playerChoice, getComputerChoice());
+
+        humanSpan.textContent = humanScore;
+        computerSpan.textContent = computerScore;
     });
 });
