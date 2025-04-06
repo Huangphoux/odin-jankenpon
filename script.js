@@ -70,11 +70,25 @@ computerSpan.textContent = computerScore;
 const computerItem = document.querySelector(".computer");
 computerItem.appendChild(computerSpan);
 
+const humanChoiceSpan = document.createElement("span");
+const humanChoiceItem = document.querySelector(".human-choice");
+humanChoiceItem.appendChild(humanChoiceSpan);
+
+const computerChoiceSpan = document.createElement("span");
+const computerChoiceItem = document.querySelector(".computer-choice");
+computerChoiceItem.appendChild(computerChoiceSpan);
+
+const showResult = document.createElement("h2");
+
 const buttons = document.querySelectorAll("button");
 buttons.forEach((button) => {
     button.addEventListener("click", () => {
         const playerChoice = button.textContent.toLowerCase();
-        playRound(playerChoice, getComputerChoice());
+        const computerChoice = getComputerChoice();
+        playRound(playerChoice, computerChoice);
+
+        humanChoiceSpan.textContent = playerChoice;
+        computerChoiceSpan.textContent = computerChoice;
 
         humanSpan.textContent = humanScore;
         computerSpan.textContent = computerScore;
